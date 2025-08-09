@@ -5,7 +5,7 @@ export default function HistorialTarjetas() {
 
   const obtenerHistorial = async () => {
     try {
-      const res = await fetch("http://localhost:8000/historial");
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/historial`);
       const data = await res.json();
       setHistorial(data);
     } catch (err) {

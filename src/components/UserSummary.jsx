@@ -6,7 +6,7 @@ export default function UserSummary() {
   useEffect(() => {
     const obtenerDatos = async () => {
       try {
-        const res = await fetch("http://localhost:8000/usuario");
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/usuario`);
         const data = await res.json();
         setUsuario(data);
       } catch (error) {

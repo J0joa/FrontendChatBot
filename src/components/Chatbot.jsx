@@ -13,7 +13,7 @@ export default function Chatbot() {
 
   const obtenerHistorial = async () => {
     try {
-      const res = await fetch("http://localhost:8000/historial");
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/historial`);
       const data = await res.json();
       setHistorialCreditos(data);
     } catch (err) {
@@ -117,7 +117,7 @@ export default function Chatbot() {
     }
 
     try {
-      const res = await fetch("http://localhost:8000/chatbot", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/chatbot`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ texto: mensaje }),
@@ -143,7 +143,7 @@ export default function Chatbot() {
       // 🟦 Agregar carro si el backend lo indica
       if (data.accion === "AGREGAR_CARRO") {
         try {
-          const resUsuario = await fetch("http://localhost:8000/usuario");
+          const resUsuario = await fetch(`${import.meta.env.VITE_API_URL}/usuario`);
           const usuario = await resUsuario.json();
           const ultimosCarros = usuario.carros_seleccionados;
 

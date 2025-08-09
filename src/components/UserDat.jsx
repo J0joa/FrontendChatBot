@@ -11,7 +11,7 @@ export default function UserDat() {
     e.preventDefault();
 
     try {
-      await fetch("http://localhost:8000/guardar_usuario", {
+      await fetch(`${import.meta.env.VITE_API_URL}/guardar_usuario`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

@@ -3,6 +3,13 @@ import { useApp } from "../context/AppContext";
 import ChatbotIcon from "./ChatbotIcon";
 import Lottie from "lottie-react";
 
+// Chatbot.jsx (arriba del archivo)
+const API_URL =
+  import.meta.env.MODE === "development"
+    ? import.meta.env.VITE_API_URL_LOCAL
+    : import.meta.env.VITE_API_URL;
+
+console.log("API_URL usada:", API_URL); // útil para comprobar en devtools
 
 // import { cars } from "../data/cars";
 
@@ -13,7 +20,8 @@ export default function Chatbot() {
 
   const obtenerHistorial = async () => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/historial`);
+      const res = await fetch(`${API_URL}/historial`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
       setHistorialCreditos(data);
     } catch (err) {
@@ -89,14 +97,13 @@ export default function Chatbot() {
   const [mensaje, setMensaje] = useState("");
   const [historial, setHistorial] = useState([]);
   const { agregarAlCarrito, actualizarColorFiltrado } = useApp();
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(false);
 
   const enviarMensaje = async () => {
     if (mensaje.trim() === "") return;
     setHistorial([...historial, { emisor: "usuario", texto: mensaje }]);
 
     const colorSolicitado = mensaje.match(/rojo|negro|plateado/gi)?.[0];
-
     const quiereFiltrar =
       /quiero.*carros.*color/i.test(mensaje) ||
       /ver.*carros.*(rojo|negro|plateado)/i.test(mensaje) ||
@@ -113,42 +120,63 @@ export default function Chatbot() {
         },
       ]);
       setMensaje("");
-      return; // detenemos aquí, no llamamos al backend
+      return;
     }
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/chatbot`, {
+      // Enviar al backend
+      const respuesta = await fetch(`${API_URL}/chatbot`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ texto: mensaje }),
       });
-      const data = await res.json();
+
+      if (!respuesta.ok) throw new Error(`HTTP ${respuesta.status}`);
+
+      const data = await respuesta.json();
+
+      // Mostrar respuesta del bot en historial
       setHistorial((h) => [...h, { emisor: "bot", texto: data.respuesta }]);
 
-      if (data.accion) {
+      // -------------------------------------------------------
+      //  Aquí lanzamos el evento que hace que UserSummary recargue
+      //  cuando el backend ha modificado datos del usuario.
+      //  Lista de acciones que normalmente actualizan usuario:
+      // -------------------------------------------------------
+      const accionesQueActualizanUsuario = [
+        "REGISTRAR_NOMBRE",
+        "REGISTRAR_EDAD",
+        "REGISTRAR_INGRESOS",
+        "REGISTRAR_OCUPACION",
+        "REGISTRAR_TIEMPO",
+        "AGREGAR_CARRO",
+        "CREDITO_APROBADO",
+        "CREDITO_RECHAZO",
+        "CREDITO_RECHAZADO",
+      ];
+
+      if (data.accion && accionesQueActualizanUsuario.includes(data.accion)) {
+        // Disparamos el evento para que UserSummary vuelva a pedir /usuario
         window.dispatchEvent(new Event("usuario_actualizado"));
       }
 
+      // Si el backend da aprobación/rechazo, actualizamos historial externo
       if (
         data.accion === "CREDITO_APROBADO" ||
         data.accion === "CREDITO_RECHAZADO"
       ) {
-        obtenerHistorial(); // <-- actualiza historial en frontend
+        // si quieres también actualizar la lista local de historial de créditos
+        obtenerHistorial();
       }
 
-      if (data.accion) {
-        window.dispatchEvent(new Event("usuario_actualizado"));
-      }
-
-      // 🟦 Agregar carro si el backend lo indica
+      // Si backend indicó agregar carro, traemos /usuario para obtener último carro
       if (data.accion === "AGREGAR_CARRO") {
         try {
-          const resUsuario = await fetch(`${import.meta.env.VITE_API_URL}/usuario`);
+          const resUsuario = await fetch(`${API_URL}/usuario`);
+          if (!resUsuario.ok) throw new Error(`HTTP ${resUsuario.status}`);
           const usuario = await resUsuario.json();
-          const ultimosCarros = usuario.carros_seleccionados;
-
-          const ultimo = ultimosCarros[ultimosCarros.length - 1]; // último carro registrado
-
+          const ultimosCarros = usuario.carros_seleccionados || [];
+          const ultimo = ultimosCarros[ultimosCarros.length - 1];
           if (ultimo?.tipo && ultimo?.color) {
             let tipoNormalizado = ultimo.tipo.toLowerCase();
             if (tipoNormalizado === "pickup") tipoNormalizado = "pickups";
@@ -158,7 +186,6 @@ export default function Chatbot() {
                 c.linea.toLowerCase() === tipoNormalizado &&
                 c.color.toLowerCase() === ultimo.color.toLowerCase()
             );
-
             if (carro) agregarAlCarrito(carro);
           }
         } catch (e) {
@@ -166,24 +193,26 @@ export default function Chatbot() {
         }
       }
     } catch (err) {
-      console.error("Error:", err);
+      console.error("Error en /chatbot:", err);
+      setHistorial((h) => [
+        ...h,
+        { emisor: "bot", texto: "Error al conectar con el servidor" },
+      ]);
     }
 
     setMensaje("");
   };
 
-  
-
   return (
     <div>
-      <div onClick={() => setVisible(!visible)} className="fixed z-5 text-4xl bottom-4   right-4">
+      <div
+        onClick={() => setVisible(!visible)}
+        className="fixed z-5 text-4xl bottom-4   right-4"
+      >
         <ChatbotIcon />
-        
+
         {/* resto del código del chat */}
       </div>
-      
-      
-      
 
       {visible && (
         <div className="m-4 p-4 fixed z-4 bottom-0 right-0 bg-white shadow w-80 rounded-2xl text-[10px] md:text-[12px] lg:text-[14px]">
@@ -197,7 +226,7 @@ export default function Chatbot() {
                 key={i}
                 className="m-6 bg-blue-500/20 rounded-2xl flex content-center "
               >
-                <strong className="mx-2">{m.emisor}:</strong> {m.texto}
+                <strong className="mx-2">{m.emisor}:</strong> {String(m.texto)}
               </p>
             ))}
           </div>
@@ -221,23 +250,17 @@ export default function Chatbot() {
           </div>
 
           <div className="border-[0.1px] m-3 rounded-2xl">
-            <div className="m-4 p-4 gap-4 " >
-             <input
-            value={mensaje}
-            type="text"
-            placeholder="Escribe tu mensaje aquí..."
-            onChange={(e) => setMensaje(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && enviarMensaje()}
-            className="border-0 border-gray-100   w-full h-5 cursor-horizontal-text text-left border-none focus:outline-none"
-          />
-
+            <div className="m-4 p-4 gap-4 ">
+              <input
+                value={mensaje}
+                type="text"
+                placeholder="Escribe tu mensaje aquí..."
+                onChange={(e) => setMensaje(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && enviarMensaje()}
+                className="border-0 border-gray-100   w-full h-5 cursor-horizontal-text text-left border-none focus:outline-none"
+              />
+            </div>
           </div>
-
-          </div>
-
-          
-
-         
         </div>
       )}
     </div>

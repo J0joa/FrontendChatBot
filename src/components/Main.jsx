@@ -83,9 +83,9 @@ function Main({ titleClass, textClass, imageClass, mainClass }) {
           <div className="">
             <div className=" gap-4 m-4 grid grid-cols-1 md:grid-cols-[50%_50%] lg:grid-cols-[22%_76%]">
               <div className="w-full flex justify-center cus ">
-                <p>
+                <>
                   <UserSummary />
-                </p>
+                </>
               </div>
 
               <div className="w-full flex justify-center">

@@ -1,5 +1,9 @@
-// Archivo: src/components/UserDat.jsx
 import { useState } from "react";
+
+const API_URL =
+  import.meta.env.MODE === "development"
+    ? import.meta.env.VITE_API_URL_LOCAL
+    : import.meta.env.VITE_API_URL;
 
 export default function UserDat() {
   const [nombre, setNombre] = useState("");
@@ -11,7 +15,7 @@ export default function UserDat() {
     e.preventDefault();
 
     try {
-      await fetch(`${import.meta.env.VITE_API_URL}/guardar_usuario`, {
+      await fetch(`${API_URL}/guardar_usuario`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -21,6 +25,10 @@ export default function UserDat() {
           tiempo_laborado: parseInt(tiempo),
         }),
       });
+
+      // Lanzar evento para que UserSummary y otros componentes se actualicen
+      window.dispatchEvent(new Event("usuario_actualizado"));
+
       alert("Usuario registrado correctamente");
     } catch (err) {
       console.error("Error al registrar:", err);
@@ -33,7 +41,10 @@ export default function UserDat() {
   };
 
   return (
-    <form onSubmit={manejarRegistro} className="max-w-md mx-auto bg-gray-100 p-6 rounded shadow mt-6">
+    <form
+      onSubmit={manejarRegistro}
+      className="max-w-md mx-auto bg-gray-100 p-6 rounded shadow mt-6"
+    >
       <h3 className="text-lg font-semibold mb-4">Registrar Usuario</h3>
 
       <input

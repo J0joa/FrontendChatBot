@@ -1,4 +1,10 @@
+// UserSummary.jsx
 import { useEffect, useState } from "react";
+
+const API_URL =
+  import.meta.env.MODE === "development"
+    ? import.meta.env.VITE_API_URL_LOCAL
+    : import.meta.env.VITE_API_URL;
 
 export default function UserSummary() {
   const [usuario, setUsuario] = useState(null);
@@ -6,7 +12,8 @@ export default function UserSummary() {
   useEffect(() => {
     const obtenerDatos = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/usuario`);
+        const res = await fetch(`${API_URL}/usuario`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
         setUsuario(data);
       } catch (error) {
@@ -14,12 +21,13 @@ export default function UserSummary() {
       }
     };
 
+    // Obtener al montar
     obtenerDatos();
 
     // Escucha el evento "usuario_actualizado"
     window.addEventListener("usuario_actualizado", obtenerDatos);
 
-    // Limpieza del listener al desmontar
+    // Limpieza al desmontar
     return () => {
       window.removeEventListener("usuario_actualizado", obtenerDatos);
     };

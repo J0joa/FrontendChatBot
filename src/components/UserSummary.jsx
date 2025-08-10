@@ -35,6 +35,8 @@ export default function UserSummary() {
 
   if (!usuario) return <p>Cargando datos del usuario...</p>;
 
+  console.log("API_URL usada:", API_URL);
+
   return (
     <div className="p-4 bg-sky-100 mb-4 rounded  overflow-y-auto custom-scroll ">
       <div className="relative top-4 max-h-[400px]  bg-violet-300/20 rounded-2xl m-2 flex flex-col ">

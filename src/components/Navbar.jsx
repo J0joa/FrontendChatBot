@@ -1,13 +1,55 @@
+import { useState } from "react";
+
 function Navbar({ className }) {
+  const [navSee, setNavSee] = useState(true);
+
   return (
     <>
-      <div className=" relative h-100  top-10 left-3 m-3 space-y-18 font-light text-[10px] md:text-[14px] lg:text-[18px]">
-        {" "}
+      <div className="  fixed top-0 z-4 w-full h-10 flex items-center bg-[#03045E]/80 border-b-[0.3px] border-gray-300 hover:shadow-[0_0_6px_rgba(0,0,0,0.8)] md:hidden">
+        <i
+          onClick={() => setNavSee(!navSee)}
+          className="bxr   bx-dots-horizontal-rounded-circle m-4 text-2xl text-white"
+        ></i>{" "}
+        <i className="bxr absolute  right-0 bx-palette m-4 text-2xl text-white"></i>
+      </div>
 
-        <h2 className="text-[15px] md:text-[16px] lg:text-[18px] m-4">Categorizacion de productos </h2>
+      {navSee && (
+        <div className=" relative z-5 block md:hidden ">
+          <ul className=" fixed  z-5  text-white  w-[200px]  bg-[#03045E]/80 px-6 py-6 gap-20 flex justify-between flex-col items-center top-10 border-b-[0.3px] border-r-[0.3px] border-gray-300 hover:shadow-[0_0_6px_rgba(0,0,0,1)] rounded-br-2xl font-nunito font-light parent  ">
+            <li>
+              <a href="#main" className="">
+                <p className="mt-5">Catálogo</p>
+              </a>
+            </li>
+            <li>
+              <a href="#novedades" className="">
+                {" "}
+                <p className="m-1"> Usuario</p>
+              </a>
+            </li>
+            <li>
+              <a href="#about" className="">
+                <p className="m-1"> Sobre la empresa</p>
+              </a>
+            </li>
+            <li>
+              <a href="#contacto" className="">
+                <p className="mb-4"> Contactos</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      )}
+
+      <div className=" relative h-100  top-10 left-3 m-3 space-y-18 font-light text-[10px] md:text-[14px] lg:text-[18px]">
+        <h2 className="text-[15px] md:text-[16px] lg:text-[18px] m-4">
+          Categorizacion de productos{" "}
+        </h2>
         <div className="gap-10 ml-0 md:ml-10 flex flex-row md:flex-none md:flex-col lg:ml-5">
           <div className="space-y-8 list-none">
-            <h3 className="font-semibold text-[14px] md:text-[14px] lg:text-[18px] m-4">Color</h3>
+            <h3 className="font-semibold text-[14px] md:text-[14px] lg:text-[18px] m-4">
+              Color
+            </h3>
 
             <ul className="space-y-4 mx-3 text-[14px] md:text-[14px] lg:text-[16px]">
               <li>Plateado</li>
@@ -16,7 +58,9 @@ function Navbar({ className }) {
             </ul>
           </div>
           <div className="space-y-5">
-            <h3 className="font-semibold text-[14px] md:text-[14px] lg:text-[18px] m-4">Línea</h3>
+            <h3 className="font-semibold text-[14px] md:text-[14px] lg:text-[18px] m-4">
+              Línea
+            </h3>
             <ul className="space-y-4 mx-3 text-[14px] md:text-[14px] lg:text-[16px] m-4">
               <li>Sport</li>
               <li>Camioneta</li>

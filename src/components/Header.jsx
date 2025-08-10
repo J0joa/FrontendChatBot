@@ -9,7 +9,7 @@ function Header({ className, movieClass, imageClass }) {
       <div className={className}>
         <div
           className="fixed z-3 top-0 left-0  w-full text-center
-            text-white font-bold text-lg md:text-xl lg:text-2xl p-4 bg-[rgba(26,29,76,0.7)]
+            text-white font-bold text-lg md:text-xl lg:text-2xl p-4 bg-[#03045E]/80
             shadow-md px-4 py-6 flex justify-between items-center text-[10px] md:text-[15px] lg:text-[20px]"
         >
           {" "}

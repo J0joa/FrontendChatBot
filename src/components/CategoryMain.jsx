@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom"; // ⬅️ useParams obtiene :color
-import {createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const MiCotext = createContext();
 
@@ -8,15 +8,69 @@ import UserDat from "./UserDat";
 //import { cars } from "./data";
 
 export const cars = [
-  { id: 1, valor: 200000000, color: "rojo", linea: "sport", img: "/img/r1.jpg" },
-  { id: 2, valor: 50000000, color: "rojo", linea: "pickups", img: "/img/r2.png" },
-  { id: 3, valor: 100000000, color: "rojo", linea: "camioneta", img: "/img/r3.png" },
-  { id: 4, valor: 500000000, color: "plateado", linea: "sport", img: "/img/p1.png" },
-  { id: 5, valor: 30000000, color: "plateado", linea: "pickups", img: "/img/p2.png" },
-  { id: 6, valor: 70000000, color: "plateado", linea: "camioneta", img: "/img/p3.png" },
-  { id: 7, valor: 600000000, color: "negro", linea: "sport", img: "/img/b1.png" },
-  { id: 8, valor: 30000000, color: "negro", linea: "pickups", img: "/img/b2.png" },
-  { id: 9, valor: 45000000, color: "negro", linea: "camioneta", img: "/img/b3.png" }
+  {
+    id: 1,
+    valor: 200000000,
+    color: "rojo",
+    linea: "sport",
+    img: "/img/r1.jpg",
+  },
+  {
+    id: 2,
+    valor: 50000000,
+    color: "rojo",
+    linea: "pickups",
+    img: "/img/r2.png",
+  },
+  {
+    id: 3,
+    valor: 100000000,
+    color: "rojo",
+    linea: "camioneta",
+    img: "/img/r3.png",
+  },
+  {
+    id: 4,
+    valor: 500000000,
+    color: "plateado",
+    linea: "sport",
+    img: "/img/p1.png",
+  },
+  {
+    id: 5,
+    valor: 30000000,
+    color: "plateado",
+    linea: "pickups",
+    img: "/img/p2.png",
+  },
+  {
+    id: 6,
+    valor: 70000000,
+    color: "plateado",
+    linea: "camioneta",
+    img: "/img/p3.png",
+  },
+  {
+    id: 7,
+    valor: 600000000,
+    color: "negro",
+    linea: "sport",
+    img: "/img/b1.png",
+  },
+  {
+    id: 8,
+    valor: 30000000,
+    color: "negro",
+    linea: "pickups",
+    img: "/img/b2.png",
+  },
+  {
+    id: 9,
+    valor: 45000000,
+    color: "negro",
+    linea: "camioneta",
+    img: "/img/b3.png",
+  },
 ];
 
 export default function CategoryMain() {
@@ -38,6 +92,11 @@ export default function CategoryMain() {
     const guardado = localStorage.getItem("carrito");
     return guardado ? JSON.parse(guardado) : [];
   });
+
+  // Guardar cambios del carrito en localStorage automáticamente
+  useEffect(() => {
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+  }, [carrito]);
 
   //mostrar y ocultar carrito ####################################
 
@@ -73,8 +132,6 @@ export default function CategoryMain() {
     0
   );
 
-  
-
   return (
     <div className="p-8 text-[10px] md:text-[12px] lg:text-[14px]">
       <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 m-10 scroll-mt-20 text-[10px] md:text-[12px] lg:text-[14px]">
@@ -82,9 +139,11 @@ export default function CategoryMain() {
           filtrados.map((producto) => (
             <li
               key={producto.id}
-              className="rounded-2xl bg-blue-500/20 overflow-hidden shadow"
+              className="rounded-2xl bg-blue-500/10 border-[0.3px] border-gray-300  overflow-hidden shadow transform transition-transform duration-300 hover:scale-101 hover:shadow-[0_0_6px_rgba(0,0,0,0.3)]"
             >
-              <h2 className="text-lg font-semibold text-[10px] md:text-[14px] lg:text-[18px] m-4">{producto.nombre}</h2>
+              <h2 className="text-lg font-semibold text-[10px] md:text-[14px] lg:text-[18px] m-4">
+                {producto.nombre}
+              </h2>
 
               <h2 className="text-2xl text-center font-medium  py-2 text-blue text-[14px] md:text-[16px] lg:text-[18px] m-4">
                 {producto.linea}
@@ -102,7 +161,7 @@ export default function CategoryMain() {
                 <span className="font-extrabold">{producto.valor}</span>
               </h2>
 
-              <div className="flex items-center ">
+              <div className="flex items-center">
                 <button
                   className="bg-blue-500  active:bg-blue-600  text-white px-3 py-1 rounded relative flex  m-4"
                   onClick={() => agregarAlCarrito(producto)}
@@ -137,7 +196,7 @@ export default function CategoryMain() {
           </Link>
         </button>
       </div>
-      
+
       {mostrarCarrito && (
         <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-40 z-50 flex justify-center items-center text-[10px] md:text-[12px] lg:text-[14px]">
           <div className="bg-white rounded-lg shadow-lg p-6  w-100 md:w-100 max-h-[80vh] overflow-y-auto">
@@ -177,7 +236,6 @@ export default function CategoryMain() {
                         <p className="p-1 mx-1"> Eliminar</p>
                       </button>
                     </div>
-                    
                   </li>
                 ))}
               </ul>
@@ -191,14 +249,9 @@ export default function CategoryMain() {
             >
               <p className="m-2">Cerrar</p>
             </button>
-
-            
           </div>
         </div>
       )}
-
-      
-      
     </div>
   );
 }

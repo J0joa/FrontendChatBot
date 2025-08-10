@@ -197,7 +197,7 @@ export default function Chatbot() {
                 key={i}
                 className="m-6 bg-blue-500/20 rounded-2xl flex content-center "
               >
-                <strong className="mx-2">{m.emisor}:</strong> str{m.texto}
+                <strong className="mx-2">{m.emisor}:</strong> {m.texto}
               </p>
             ))}
           </div>

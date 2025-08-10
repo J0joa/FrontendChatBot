@@ -32,7 +32,7 @@ function Main({ titleClass, textClass, imageClass, mainClass }) {
                   <div
                     key={ColorOp}
                     onClick={() => navigate(`/categoria/${ColorOp}`)}
-                    className="flex flex-col bg-blue-50 p-4 w-full h-full rounded transform transition-transform duration-300 hover:scale-101 hover:shadow-lg hover:shadow-gray-40 my-4 text-[10px] md:text-[12px] lg:text-[14px] "
+                    className="flex flex-col bg-[#CAF0F8]/15 border-[0.5px] border-gray-300 p-4 w-full h-full rounded transform transition-transform duration-300 hover:scale-101 hover:shadow-[0_0_6px_rgba(0,0,0,0.3)] my-4 text-[10px] md:text-[12px] lg:text-[14px] "
                   >
                     <h3 className=" font-serif font-semibold mb-2 text-[10px] md:text-[14px] lg:text-[18px] m-4">
                        {ColorOp}

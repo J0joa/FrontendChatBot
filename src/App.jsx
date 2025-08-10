@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { useState } from "react";
 
 import Chatbot from "./components/Chatbot";
 import CarList from "./components/CarList";
@@ -16,6 +17,9 @@ import Footer from "./components/Footer";
 import About from "./components/About";
 
 export default function App() {
+
+  const [visible, setVisible] = useState(false);
+
   return (
     <AppProvider>
       <div className="p-6 min-h-screen  bg-gray-100">
@@ -25,9 +29,9 @@ export default function App() {
           imageClass="w-2  mx-10 sm:w-4 md:w-6 lg:w-20 flex  items-center text-center rounded-xl shadow"
         />
         <div className="grid grid-cols-1 md:grid-cols-[200px_605px] lg:grid-cols-[200px_1fr_250px]">
-          <div className="bg-gray-100 p-4 rounded shadow">
+          <div className="bg-[#00B4D8]/2 p-4 rounded shadow">
             <Navbar className="text-sm md:text-base lg:text-lg h-auto " />
-          </div>
+          </div>  
 
           <div className="p-4">
             <Routes>
@@ -56,7 +60,7 @@ export default function App() {
             </Routes>
           </div>
 
-          <div className=" hidden   lg:block bg-blue-900/10  p-4 rounded shadow">
+          <div className=" hidden   lg:block bg-[#00B4D8]/2  p-4 rounded shadow">
             <Sidebar className="text-sm lg:text-base space-y-8 m-4 relative right-2 top-10 font-light text-[10px] md:text-[14px] lg:text-[18px] " />
           </div>
         </div>

@@ -23,7 +23,7 @@ export default function CarrosPorColor() {
     : [];
 
   return (
-    <div className="p-4 bg-gray-100 rounded mt-4">
+    <div className="p-4 bg-blue-100 rounded mt-4">
       <h2 className="text-lg font-semibold mb-2 text-[10px] md:text-[12px] lg:text-[14px]">Carros del color: {colorFiltrado || "ninguno"}</h2>
       {carrosFiltrados.length > 0 ? (
         <ul>

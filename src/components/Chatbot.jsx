@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useApp } from "../context/AppContext";
 import ChatbotIcon from "./ChatbotIcon";
 import Lottie from "lottie-react";
+import { useRef } from "react";
 
 // Chatbot.jsx (arriba del archivo)
 const API_URL =
@@ -203,6 +204,14 @@ export default function Chatbot() {
     setMensaje("");
   };
 
+  //apuntar al final del mensaje
+
+  const endRef = useRef(null);
+
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [historial]);
+
   return (
     <div>
       <div
@@ -229,6 +238,7 @@ export default function Chatbot() {
                 <strong className="mx-2">{m.emisor}:</strong> {String(m.texto)}
               </p>
             ))}
+            <div ref={endRef} />
           </div>
 
           <div className="mt-2 p-2 m-4  rounded-2xl text-sm max-h-40 overflow-y-auto text-[10px] md:text-[12px] lg:text-[14px]">

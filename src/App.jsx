@@ -22,7 +22,7 @@ export default function App() {
 
   return (
     <AppProvider>
-      <div className="p-6 min-h-screen  bg-gray-100">
+      <div className="p-6 min-h-screen w-full bg-gray-100">
         <Header
           className="relative z-3 bg-blue-600 h-screen text-white text-center p-4 hidden md:block text-[10px] md:text-[12px] lg:text-[14px]"
           movieClass=" absolute w-full h-full top-0 left-0 object-cover"
@@ -41,7 +41,7 @@ export default function App() {
                   <div className="bg-white  p-4 rounded shadow flex justify-center">
                     <Main
                       titleClass="text-base my-20 text-[25px]  md:text-[30px] lg:text-3xl m-4 font-light"
-                      textClass="text-sm my-20 md:text-base lg:text-lg text-mg-500/100 font-light text-[10px] md:text-[12px] lg:text-[17px]"
+                      textClass="text-sm my-20 md:text-base lg:text-lg text-mg-500/100 font-light text-[12px] md:text-[14px] lg:text-[17px]"
                       mainClass="grid gap-4 sm:grid-cols-2 md:grid-cols-3 items-stretch lg:w-full"
                     />
                   </div>

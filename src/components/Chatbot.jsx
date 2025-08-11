@@ -12,6 +12,8 @@ const API_URL =
 
 console.log("API_URL usada:", API_URL); // útil para comprobar en devtools
 
+
+
 // import { cars } from "../data/cars";
 
 //import { cars } from "../data/cars";
@@ -224,7 +226,7 @@ export default function Chatbot() {
       </div>
 
       {visible && (
-        <div className="m-4 p-4 fixed z-4 bottom-0 right-0 bg-white shadow w-80 rounded-2xl text-[10px] md:text-[12px] lg:text-[14px]">
+        <div className="m-4 p-4 fixed z-4 bottom-0 right-0 bg-white shadow w-70 rounded-2xl text-[12px] md:text-[13px] lg:text-[14px]">
           <div className="bg-green-950 h-10 w-full rounded-t-2xl  flex content-center justify-center">
             <h1 className="m-2 text-blue-100  font-semibold">ChatBot</h1>
             <img src="./public/img/logo" alt="" />

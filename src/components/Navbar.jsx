@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 function Navbar({ className }) {
-  const [navSee, setNavSee] = useState(true);
+  const [navSee, setNavSee] = useState(false);
 
   return (
     <>
@@ -15,27 +15,18 @@ function Navbar({ className }) {
 
       {navSee && (
         <div className=" relative z-5 block md:hidden ">
-          <ul className=" fixed  z-5  text-white  w-[200px]  bg-[#03045E]/80 px-6 py-6 gap-20 flex justify-between flex-col items-center top-10 border-b-[0.3px] border-r-[0.3px] border-gray-300 hover:shadow-[0_0_6px_rgba(0,0,0,1)] rounded-br-2xl font-nunito font-light parent  ">
-            <li>
-              <a href="#main" className="">
-                <p className="mt-5">Catálogo</p>
-              </a>
+          <ul className="fixed z-5 text-white w-[200px] bg-[#03045E]/80 px-6 py-1 gap-5 flex justify-between flex-col items-center top-10 border-b-[0.3px] border-r-[0.3px] border-gray-300 hover:shadow-[0_0_6px_rgba(0,0,0,1)] rounded-br-2xl font-nunito parent text-[12px] font-extralight ">
+            <li className="transition-all ease-in-out duration-initial hover:bg-amber-50 hover:text-[#03045E]  w-full h-10 flex items-center">
+              <a className="mx-4" href="#main">Catálogo</a>
             </li>
-            <li>
-              <a href="#novedades" className="">
-                {" "}
-                <p className="m-1"> Usuario</p>
-              </a>
+            <li className="transition-all ease-in-out duration-initial hover:bg-amber-50 hover:text-[#03045E]  w-full h-8 flex items-center">
+              <a className="mx-4" href="#novedades">Usuario</a>
             </li>
-            <li>
-              <a href="#about" className="">
-                <p className="m-1"> Sobre la empresa</p>
-              </a>
+            <li className="transition-all ease-in-out duration-initial hover:bg-amber-50 hover:text-[#03045E]  w-full h-8 flex items-center">
+              <a className="mx-4" href="#about">Sobre la empresa</a>
             </li>
-            <li>
-              <a href="#contacto" className="">
-                <p className="mb-4"> Contactos</p>
-              </a>
+            <li className="transition-all ease-in-out duration-initial hover:bg-amber-50 hover:text-[#03045E]  w-full h-8 flex items-center ">
+              <a className="mx-4" href="#contacto">Contactos</a>
             </li>
           </ul>
         </div>

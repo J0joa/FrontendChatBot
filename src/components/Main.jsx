@@ -34,7 +34,7 @@ function Main({ titleClass, textClass, imageClass, mainClass }) {
                     onClick={() => navigate(`/categoria/${ColorOp}`)}
                     className="flex flex-col bg-[#CAF0F8]/15 border-[0.5px] border-gray-300 p-4 w-full h-full rounded transform transition-transform duration-300 hover:scale-101 hover:shadow-[0_0_6px_rgba(0,0,0,0.3)] my-4 text-[10px] md:text-[12px] lg:text-[14px] "
                   >
-                    <h3 className=" font-serif font-semibold mb-2 text-[10px] md:text-[14px] lg:text-[18px] m-4">
+                    <h3 className=" font-serif font-semibold mb-2 text-[18px] md:text-[19px] lg:text-[20px] m-4">
                        {ColorOp}
                     </h3>
 
@@ -50,9 +50,9 @@ function Main({ titleClass, textClass, imageClass, mainClass }) {
                     {/* Contenido textual */}
                     <div className="flex-1 flex flex-col justify-between text-[10px] md:text-[14px] lg:text-[18px] m-4">
                       <ul className="text-center space-y-2">
-                        <li className="text-[10px] md:text-[14px] lg:text-[18px]   font-light">CHEBROLET</li>
-                        <li className="text-[10px] md:text-[14px] lg:text-[18px]   font-extralight">MODELO 2030</li>
-                        <li className="text-[10px] md:text-[14px] lg:text-[18px]   font-semibold">
+                        <li className="text-[14px] md:text-[16px] lg:text-[18px]   font-light">CHEBROLET</li>
+                        <li className="text-[14px] md:text-[16px] lg:text-[18px]   font-extralight">MODELO 2030</li>
+                        <li className="text-[14px] md:text-[16px] lg:text-[18px]   font-semibold">
                           Desde:{" "}
                           <span className=" text-[17px] md:text-[18px] lg:text-[20px] text-black font-black">
                             $50.000.000

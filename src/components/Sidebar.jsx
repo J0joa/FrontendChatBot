@@ -9,7 +9,7 @@ function Sidebar({ className }) {
 
         <div className="space-y ">
           <h2 className="m-4 font-semibold text-[10px] md:text-[14px] lg:text-[18px] ">Politica</h2>
-          <p className="mx-5 text-[10px] md:text-[14px] lg:text-[16px] m-4">
+          <p className="mx-5 text-[11px] md:text-[14px] lg:text-[16px] m-4">
             Garantizamos productos confiables, duraderos y de alto desempeño.
             Aplicamos estándares internacionales en cada etapa de producción.
             Fomentamos la mejora continua en todos nuestros procesos. Escuchamos

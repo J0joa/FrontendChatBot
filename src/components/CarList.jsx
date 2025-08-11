@@ -6,7 +6,7 @@ export default function CarList() {
   const { carrito } = useApp();
 
   return (
-    <div className=" bg-blue-50  w-50 md:w-50 lg:w-[580px] rounded-2xl overflow-hidden">
+    <div className=" bg-blue-100  w-50 md:w-50 lg:w-[450px] rounded-2xl overflow-hidden">
       <h2 className="m-4 font-semibold text-[10px] md:text-[12px] lg:text-[14px]">Carrito Chatbot</h2>
 
       {carrito.length > 1 && (
@@ -32,7 +32,7 @@ export default function CarList() {
               key={i}
               className="w-[200px] text-[10px] md:text-[12px] lg:text-[14px] md:w-[200px]  lg:w-[200px] flex-shrink-0 h-70  rounded-2xl"
             >
-              <div className="relative flex  flex-col text-center items-center m-1   rounded-2xl bg-amber-50/80">
+              <div className="relative flex  flex-col text-center items-center m-1   rounded-2xl border-[1px] border-gray-400 bg-sky-200">
                 <p className="m-4 flex flex-col font-semibold ">
                   <span>
                     {" "}

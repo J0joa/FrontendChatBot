@@ -32,10 +32,10 @@ function Main({ titleClass, textClass, imageClass, mainClass }) {
                   <div
                     key={ColorOp}
                     onClick={() => navigate(`/categoria/${ColorOp}`)}
-                    className="flex flex-col bg-[#CAF0F8]/15 border-[0.5px] border-gray-300 p-4 w-full h-full rounded transform transition-transform duration-300 hover:scale-101 hover:shadow-[0_0_6px_rgba(0,0,0,0.3)] my-4 text-[10px] md:text-[12px] lg:text-[14px] "
+                    className="flex flex-col bg-[#CAF0F8]/40 border-[0.5px] border-gray-300 p-4 w-full h-full rounded transform transition-transform duration-300 hover:scale-101 hover:shadow-[0_0_6px_rgba(0,0,0,0.3)] my-4 text-[10px] md:text-[12px] lg:text-[14px] "
                   >
                     <h3 className=" font-serif font-semibold mb-2 text-[18px] md:text-[19px] lg:text-[20px] m-4">
-                       {ColorOp}
+                      {ColorOp}
                     </h3>
 
                     {/* Imagen con aspecto fijo */}
@@ -50,8 +50,12 @@ function Main({ titleClass, textClass, imageClass, mainClass }) {
                     {/* Contenido textual */}
                     <div className="flex-1 flex flex-col justify-between text-[10px] md:text-[14px] lg:text-[18px] m-4">
                       <ul className="text-center space-y-2">
-                        <li className="text-[14px] md:text-[16px] lg:text-[18px]   font-light">CHEBROLET</li>
-                        <li className="text-[14px] md:text-[16px] lg:text-[18px]   font-extralight">MODELO 2030</li>
+                        <li className="text-[18px] md:text-[20px] lg:text-[22px]   font-light">
+                          CHEBROLET
+                        </li>
+                        <li className="text-[14px] md:text-[16px] lg:text-[18px]   font-extralight">
+                          MODELO 2030
+                        </li>
                         <li className="text-[14px] md:text-[16px] lg:text-[18px]   font-semibold">
                           Desde:{" "}
                           <span className=" text-[17px] md:text-[18px] lg:text-[20px] text-black font-black">
@@ -77,15 +81,33 @@ function Main({ titleClass, textClass, imageClass, mainClass }) {
           </div>
         }
 
-        <div className="scroll-mt-20 min-h-screen text-[17px] md:text-[18px] lg:text-[20px] " id="novedades">
+        <div
+          className="scroll-mt-20 min-h-screen text-[17px] md:text-[18px] lg:text-[20px] "
+          id="novedades"
+        >
           <h2 className={titleClass}>Información del Usuario</h2>
 
-          <div className="">
-            <div className=" gap-4 m-4 grid grid-cols-1 md:grid-cols-[50%_50%] lg:grid-cols-[22%_76%]">
-              <div className="w-full flex justify-center cus ">
-                <>
-                  <UserSummary />
-                </>
+          <div className=" lg:grid-cols-2 grid-cols-1 gap-4">
+            <div className=" gap-4 m-4 grid grid-cols-1 md:grid-cols-[50%_50%] lg:grid-cols-[60%_40%]">
+              <div className="w-full flex flex-col justify-center ">
+                <>{/* <UserSummary /> */}</>
+
+                <h2>Carros selccionad desde el ChatBot</h2>
+
+                <p className="text-[12px] md:text-[14px] lg:text-[16px] m-4">
+                  Las camionetas en colores plateado, rojo y negro ofrecen
+                  versatilidad y estilo: el plateado aporta modernidad y
+                  sofisticación, el rojo destaca por su energía y dinamismo,
+                  mientras que el negro transmite elegancia clásica. Las
+                  pick-ups en estos mismos colores combinan robustez y estilo,
+                  con el plateado que refleja modernidad, el rojo que aporta
+                  vibrancia deportiva y el negro que evoca poder y
+                  sofisticación. Por último, los deportivos en plateado, rojo y
+                  negro representan la máxima expresión de velocidad y diseño;
+                  el plateado sugiere tecnología y futurismo, el rojo es símbolo
+                  de pasión y potencia, y el negro proyecta un aspecto agresivo
+                  y exclusivo.
+                </p>
               </div>
 
               <div className="w-full flex justify-center">
@@ -93,13 +115,13 @@ function Main({ titleClass, textClass, imageClass, mainClass }) {
               </div>
 
               <div className=""></div>
+            </div>
 
-              <div className=" md:w-60 lg:w-110 bg-green-800/10 rounded-xl">
-                <h2 className=" font-semibold text-[18px] m-4">
-                  Datos de Usario
-                </h2>
-                <HistorialTarjetas />
-              </div>
+            <div className=" md:w-60 lg:w-100 bg-green-800/10 rounded-xl col-span-2">
+              <h2 className=" font-semibold text-[18px] m-4">
+                Datos de Usario
+              </h2>
+              <HistorialTarjetas />
             </div>
           </div>
         </div>

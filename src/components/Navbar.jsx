@@ -32,7 +32,7 @@ function Navbar({ className }) {
         </div>
       )}
 
-      <div className=" relative h-100  top-10 left-3 m-3 space-y-18 font-light text-[10px] md:text-[14px] lg:text-[18px]">
+      <div className=" relative h-65  top-10 left-3 m-3 space-y-18 font-light text-[10px] md:text-[14px] lg:text-[18px]">
         <h2 className="text-[15px] md:text-[16px] lg:text-[18px] m-4">
           Categorizacion de productos{" "}
         </h2>

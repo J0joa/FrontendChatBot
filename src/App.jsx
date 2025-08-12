@@ -38,11 +38,11 @@ export default function App() {
               <Route
                 path="/"
                 element={
-                  <div className="bg-white  p-4 rounded shadow flex justify-center">
+                  <div className="bg-white  p-4 rounded shadow flex flex-col">
                     <Main
                       titleClass="text-base my-20 text-[25px]  md:text-[30px] lg:text-3xl m-4 font-light"
                       textClass="text-sm my-20 md:text-base lg:text-lg text-mg-500/100 font-light text-[12px] md:text-[14px] lg:text-[17px]"
-                      mainClass="grid gap-4 sm:grid-cols-2 md:grid-cols-3 items-stretch lg:w-full"
+                      mainClass="grid gap-4  md:w-150 sm:grid-cols-2 md:grid-cols-3 items-stretch lg:w-full"
                     />
                   </div>
                 }

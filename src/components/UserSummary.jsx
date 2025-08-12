@@ -9,6 +9,8 @@ const API_URL =
 export default function UserSummary() {
   const [usuario, setUsuario] = useState(null);
 
+  
+
   useEffect(() => {
     const obtenerDatos = async () => {
       try {
@@ -36,6 +38,7 @@ export default function UserSummary() {
   if (!usuario) return <p>Cargando datos del usuario...</p>;
 
   console.log("API_URL usada:", API_URL);
+  console.log("Datos del usuario:", usuario);
 
   return (
     <div className="p-4 bg-sky-100 mb-4 rounded  overflow-y-auto custom-scroll ">
